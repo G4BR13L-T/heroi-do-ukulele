@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnuo3v76xmq8s"]
+
+[ext_resource type="Script" path="res://cenas/jogo.gd" id="1_shq0x"]
+[ext_resource type="PackedScene" uid="uid://cttak8t38w6dy" path="res://cenas/captador.tscn" id="2_7kka4"]
+[ext_resource type="PackedScene" uid="uid://ddi7jct3bohib" path="res://cenas/nota.tscn" id="3_y0etc"]
+[ext_resource type="AudioStream" uid="uid://deuqj1p32iycv" path="res://assets/Musicas/Last Chanc.mp3" id="4_mfvqc"]
+
+[node name="jogo" type="Node2D"]
+script = ExtResource("1_shq0x")
+cena_captador = ExtResource("2_7kka4")
+cena_nota = ExtResource("3_y0etc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mfvqc")
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
