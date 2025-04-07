@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dnuo3v76xmq8s"]
 
-[ext_resource type="Script" path="res://cenas/jogo.gd" id="1_shq0x"]
+[ext_resource type="Script" uid="uid://cyvhf0rldxwfx" path="res://cenas/jogo.gd" id="1_shq0x"]
 [ext_resource type="PackedScene" uid="uid://cttak8t38w6dy" path="res://cenas/captador.tscn" id="2_7kka4"]
 [ext_resource type="PackedScene" uid="uid://ddi7jct3bohib" path="res://cenas/nota.tscn" id="3_y0etc"]
-[ext_resource type="AudioStream" uid="uid://deuqj1p32iycv" path="res://assets/Musicas/Last Chanc.mp3" id="4_mfvqc"]
+[ext_resource type="AudioStream" uid="uid://dbwyyynr5uqm3" path="res://assets/Musicas/226032182.mp3" id="4_bkotw"]
 
 [node name="jogo" type="Node2D"]
 script = ExtResource("1_shq0x")
@@ -12,10 +12,26 @@ cena_nota = ExtResource("3_y0etc")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.3
+one_shot = true
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_mfvqc")
+stream = ExtResource("4_bkotw")
 autoplay = true
+
+[node name="Placar" type="Label" parent="."]
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 75.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 48
+text = "000000"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

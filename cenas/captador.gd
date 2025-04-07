@@ -15,10 +15,25 @@ func captou_nota() -> float:
 	if(has_overlapping_areas()):
 		var nota = get_overlapping_areas()[0]
 		var diferenca = position.y - nota.position.y
-		if(diferenca > -50 && diferenca < 50):
+		print(diferenca)
+		if(diferenca > -8 && diferenca < 8):
+			print("Perfect!")
 			nota.queue_free()
-			return 100.0 - diferenca
-	return -20.0
+			return 100.0
+		elif(diferenca > -16 && diferenca < 16):
+			print("Great!")
+			nota.queue_free()
+			return 50.0
+		elif (diferenca > -32 && diferenca < 32):
+			print("...")
+			return 25.0
+		elif (diferenca > -64 && diferenca < 64):
+			print("Bad")
+			return 5
+	else:
+		print("Out")
+		return -15
+	return -20
 
 func mostrar_explosao() -> void:
 	explosion.show()
