@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var timer: Timer = $Timer
 @onready var placar: Label = $Placar
+@onready var final: Label = $Final
 
 @export var cena_captador: PackedScene
 @export var cena_nota: PackedScene
@@ -107,10 +108,16 @@ func atualiza_placar() -> void:
 		pontuacao = 0
 	placar.text = str(pontuacao).pad_zeros(6).pad_decimals(0)
 
+func gerar_mensagem() -> String:
+	return "\t\tParabéns você acertou perfeitamente " + pontos[0] + " vezes, também fez " + pontos[1] + " acertos bons, \n\t" + pontos[2] + " foram aceitáveis, fez também " + pontos[3] + " acertos ruins, \n\tmas como nem tudo são flores, você tambem clicou fora " + pontos[4] + " vezes e deixou cair " + pontos[5] + " notas.\n\tQue boa parida! Ao total você fez " + pontuacao + " pontos"
 
 func _quando_musica_finalizada() -> void:
 	timer.stop()
-	print("\tParabéns você acertou perfeitamente ", pontos[0], " vezes, também fez ", pontos[1], " acertos, \n", pontos[2], " foram aceitáveis, fez também ", pontos[3], " acertos ruins, \nmas como nem tudo são flores, você tambem clicou fora ", pontos[4], " vezes e deixou cair ", pontos[5], " notas.\n\tQue boa parida!")
+	var mensagem: String = gerar_mensagem()
+	final.text = mensagem
+	print(mensagem)
 	for child in get_children():
 		print(child)
+		child.queue_free()
 		child.set_process(false)
+	add_child(final)

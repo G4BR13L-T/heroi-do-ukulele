@@ -34,5 +34,11 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 48
 text = "000000"
 
+[node name="Final" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 80.0
+offset_bottom = 123.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_quando_musica_finalizada"]
